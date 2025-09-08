@@ -6,6 +6,7 @@ import type { BlogPost, BlogResponse } from '../types';
 
 export const Blog = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [allPosts, setAllPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,8 +14,58 @@ export const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [tags, setTags] = useState<string[]>([]);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [hasSearched, setHasSearched] = useState(false); // Search yapılıp yapılmadığını takip et
 
+  // Tüm postları getir (search için)
   useEffect(() => {
+    const fetchAllPosts = async () => {
+      try {
+        const response = await blogService.getPosts(1, 100);
+        setAllPosts(response.posts);
+      } catch (err) {
+        console.error('Failed to fetch all posts:', err);
+      }
+    };
+
+    fetchAllPosts();
+  }, []);
+
+  // Search işlemi - her zaman client side
+  useEffect(() => {
+    if (allPosts.length === 0) return;
+    
+    let filteredPosts = allPosts;
+    
+    // Eğer search term varsa filtrele
+    if (searchTerm) {
+      setHasSearched(true);
+      const searchLower = searchTerm.toLowerCase();
+      filteredPosts = allPosts.filter(post => 
+        post.title.toLowerCase().includes(searchLower) ||
+        post.excerpt.toLowerCase().includes(searchLower) ||
+        post.tags.some(tag => tag.toLowerCase().includes(searchLower))
+      );
+    } else if (hasSearched && !selectedTag) {
+      // Search temizlendiyse ve tag seçilmemişse, tüm postları göster
+      filteredPosts = allPosts;
+    } else {
+      // Normal durum - API çağrısı yapılacak
+      return;
+    }
+    
+    const postsPerPage = 6;
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
+    const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
+    
+    setPosts(paginatedPosts);
+    setTotalPages(Math.ceil(filteredPosts.length / postsPerPage));
+  }, [searchTerm, allPosts, currentPage, hasSearched, selectedTag]);
+
+  // Sadece tag filtreleme ve ilk yükleme için API çağrısı
+  useEffect(() => {
+    if (searchTerm || (hasSearched && !selectedTag)) return; // Search aktifse veya search temizlendiyse API çağırma
+    
     const fetchPosts = async () => {
       try {
         setLoading(true);
@@ -36,7 +87,7 @@ export const Blog = () => {
     };
 
     fetchPosts();
-  }, [currentPage, selectedTag]);
+  }, [currentPage, selectedTag, searchTerm, hasSearched]);
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -50,14 +101,6 @@ export const Blog = () => {
 
     fetchTags();
   }, []);
-
-  const filteredPosts = searchTerm
-    ? posts.filter(post =>
-        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-      )
-    : posts;
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -79,9 +122,18 @@ export const Blog = () => {
       setSelectedTag(tag);
       setCurrentPage(1);
     }
+    setHasSearched(false); // Tag seçildiğinde search durumunu reset et
   };
 
-  if (loading) {
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    setCurrentPage(1);
+    if (!value) {
+      setHasSearched(false); // Search temizlendiğinde reset et
+    }
+  };
+
+  if (loading && !searchTerm && !hasSearched) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary-600"></div>
@@ -126,7 +178,7 @@ export const Blog = () => {
                 type="text"
                 placeholder="Search posts..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
             </div>
@@ -166,7 +218,7 @@ export const Blog = () => {
       {/* Blog Posts */}
       <section className="section-padding bg-gray-900 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
-          {filteredPosts.length === 0 ? (
+          {posts.length === 0 ? (
             <div className="text-center py-16">
               <h3 className="text-2xl font-bold text-white dark:text-white mb-4">No posts found</h3>
               <p className="text-gray-300 dark:text-gray-300 mb-8">
@@ -182,7 +234,7 @@ export const Blog = () => {
               </p>
               {searchTerm && (
                 <button
-                  onClick={() => setSearchTerm('')}
+                  onClick={() => handleSearchChange('')}
                   className="btn-primary"
                 >
                   Clear Search
@@ -192,7 +244,7 @@ export const Blog = () => {
           ) : (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredPosts.map((post) => (
+                {posts.map((post) => (
                   <article key={post._id} className="card hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                     {post.featuredImage && (
                       <div className="aspect-w-16 aspect-h-9 mb-4 -mx-6 -mt-6">

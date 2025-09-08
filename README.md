@@ -250,54 +250,33 @@ cd server
 npm run build
 ```
 
-## 🐳 Docker Setup & Usage
-
-### MongoDB with Docker
-
-The project uses MongoDB as the database. The easiest way to set it up is using Docker:
-
-```bash
-# Start MongoDB container
-docker run -d \
-  --name portfolio-mongodb \
-  -p 27017:27017 \
-  -e MONGO_INITDB_ROOT_USERNAME=admin \
-  -e MONGO_INITDB_ROOT_PASSWORD=password123 \
-  mongo:7.0
-
-# Optional: Start Mongo Express for database management
-docker run -d \
-  --name portfolio-mongo-express \
-  -p 8081:8081 \
-  --link portfolio-mongodb:mongo \
-  -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
-  -e ME_CONFIG_MONGODB_ADMINPASSWORD=password123 \
-  -e ME_CONFIG_MONGODB_SERVER=mongo \
-  mongo-express
-```
-
-**Access Points:**
-- **MongoDB**: `mongodb://localhost:27017/portfolio`
-- **Mongo Express Web UI**: http://localhost:8081
-
-### Docker Management Commands
-
-```bash
-# Check running containers
-docker ps
-
-# Stop containers
 docker stop portfolio-mongodb portfolio-mongo-express
-
-# Start containers
 docker start portfolio-mongodb portfolio-mongo-express
-
-# Remove containers (data will be lost)
 docker rm portfolio-mongodb portfolio-mongo-express
-
-# View logs
 docker logs portfolio-mongodb
+
+## 🐳 Docker ile Tek Satırda Tüm Sistemi Çalıştırma
+
+Projeyi başlatmak için kök dizinde aşağıdaki komutu çalıştırmanız yeterlidir:
+
+```sh
+docker compose up --build
 ```
+
+Bu komut ile frontend (Vite+React), backend (Node.js+Express) ve MongoDB otomatik olarak başlatılır.
+
+### Servisler ve Erişim
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:3001
+- MongoDB: localhost:27017
+
+#### Açıklamalar
+- Frontend servisi Vite'ın preview modunda, backend ise production build ile başlatılır.
+- Ortam değişkenleri docker-compose.yml ve Dockerfile üzerinden otomatik ayarlanır.
+- Tüm bağımlılıklar ve build işlemleri container içinde otomatik yapılır.
+- İlk başlatmada imajlar oluşturulur, sonraki başlatmalarda daha hızlı açılır.
+
+> Not: Kodda değişiklik yaptıktan sonra tekrar `docker compose build` komutunu çalıştırmanız önerilir.
 
 ## 🚀 Deployment
 

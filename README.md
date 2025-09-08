@@ -3,14 +3,160 @@
 A modern, full-stack portfolio website built with React, TypeScript, and Node.js, showcasing my work, thoughts, and ways to connect.
 
 ![Portfolio Preview](https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=1200&h=```bash
-# İlk kurulum için (önerilir)
-docker compose up --build -d
+# Halil Yüksel - Portfolio Website 🚀
 
-# Normal kullanım için
-docker compose up -d
+A modern full-stack portfolio website built with React, TypeScript, Node.js, and MongoDB. Features a dynamic blog system, contact form, and responsive design.
 
-# Kod değişikliklerinden sonra
+## ✨ Features
+
+- 🏠 **Personal Portfolio** - Skills, experience, and projects showcase
+- 📝 **Dynamic Blog** - MongoDB-powered blog with search, tags, and pagination
+- 📬 **Contact Form** - Working email functionality
+- 🌙 **Dark Theme** - Beautiful dark mode design
+- 📱 **Responsive** - Mobile-first design with Tailwind CSS
+- ⚡ **Fast** - Vite bundler and optimized performance
+
+## 🛠️ Tech Stack
+
+**Frontend:** React 18, TypeScript, Tailwind CSS, Vite  
+**Backend:** Node.js, Express, MongoDB, Mongoose  
+**DevOps:** Docker, Docker Compose
+
+## 🚀 Quick Start
+
+### Option 1: Docker (Recommended)
+
+Just need Docker installed? Run everything with one command:
+
+```bash
 docker compose up --build -d
+```
+
+This automatically starts:
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:3001  
+- MongoDB: localhost:27017
+
+### Option 2: Manual Setup
+
+1. **Clone and install**
+   ```bash
+   git clone <repo-url>
+   cd Halil_Portfolio
+   npm install
+   cd server && npm install && cd ..
+   ```
+
+2. **Environment setup**
+   ```bash
+   # Root .env
+   echo "VITE_API_URL=http://localhost:3001/api" > .env
+   
+   # Server .env
+   echo "PORT=3001
+   MONGODB_URI=mongodb://localhost:27017/portfolio" > server/.env
+   ```
+
+3. **Start MongoDB**
+   ```bash
+   docker run -d --name mongo -p 27017:27017 mongo:7
+   ```
+
+4. **Development**
+   ```bash
+   # Terminal 1 - Frontend
+   npm run dev
+   
+   # Terminal 2 - Backend  
+   cd server && npm run dev
+   ```
+
+## 📝 Scripts
+
+**Root package.json:**
+```bash
+npm run dev          # Start frontend dev server
+npm run build        # Build for production
+npm run lint         # Run ESLint
+npm run docker:up    # Start with Docker
+npm run dev:full     # Full Docker rebuild
+```
+
+**Server package.json:**
+```bash
+npm run dev          # Start backend dev server
+npm run build        # Build TypeScript
+npm run start        # Production server
+```
+
+## 🔧 Development Workflow
+
+1. **Make changes** to frontend (`src/`) or backend (`server/src/`)
+2. **Auto-reload** - Both dev servers support hot reload
+3. **Docker rebuild** - Run `npm run dev:full` after major changes
+4. **Type checking** - Run `npm run type-check` before commits
+
+## 📁 Project Structure
+
+```
+├── src/                 # Frontend React app
+│   ├── components/      # Reusable components
+│   ├── pages/          # Page components
+│   ├── services/       # API calls
+│   └── types/          # TypeScript types
+├── server/             # Backend API
+│   ├── src/
+│   │   ├── models/     # MongoDB models
+│   │   ├── routes/     # Express routes
+│   │   └── index.ts    # Server entry
+│   └── dist/          # Compiled JS
+└── public/            # Static assets
+```
+
+## 🌐 API Endpoints
+
+- `GET /api/blog` - All blog posts (paginated)
+- `GET /api/blog/:slug` - Single post
+- `GET /api/blog/tags/all` - All tags
+- `POST /api/contact` - Send message
+
+## 🎨 Customization
+
+Update personal information in:
+- `src/pages/Home.tsx` - About, skills, experience
+- `src/pages/Contact.tsx` - Contact details
+- `server/src/routes/blog.ts` - Sample blog posts
+
+## 📦 Production Build
+
+```bash
+npm run build                    # Build frontend
+cd server && npm run build       # Build backend
+docker compose -f docker-compose.prod.yml up -d  # Deploy
+```
+
+## 🤝 Contributing
+
+1. Fork the repo
+2. Create feature branch: `git checkout -b feature/name`
+3. Commit: `git commit -m 'Add feature'`
+4. Push: `git push origin feature/name`
+5. Create Pull Request
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file.
+
+## 📞 Contact
+
+**Halil Yüksel**  
+📧 Email: [contact@halilyuksel.dev](mailto:contact@halilyuksel.dev)  
+🔗 GitHub: [@halilyuksel](https://github.com/halilyuksel)  
+💼 LinkedIn: [Halil Yüksel](https://linkedin.com/in/halilyuksel)
+
+---
+
+Built with ❤️ using React, TypeScript, and Node.js
 ```
 
 Bu komut ile:

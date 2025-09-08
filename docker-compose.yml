@@ -4,13 +4,13 @@ services:
     build:
       context: .
       args:
-        VITE_API_URL: http://localhost:3001
+        VITE_API_URL: http://localhost:3001/api
     ports:
       - "5173:5173"
     depends_on:
       - backend
     environment:
-      - VITE_API_URL=http://localhost:3001
+      - VITE_API_URL=http://localhost:3001/api
     networks:
       - appnet
     restart: unless-stopped
@@ -23,6 +23,7 @@ services:
       - mongo
     environment:
       - MONGODB_URI=mongodb://mongo:27017/portfolio
+      - PORT=3001
     networks:
       - appnet
     restart: unless-stopped

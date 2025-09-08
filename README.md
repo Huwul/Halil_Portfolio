@@ -2,7 +2,39 @@
 
 A modern, full-stack portfolio website built with React, TypeScript, and Node.js, showcasing my work, thoughts, and ways to connect.
 
-![Portfolio Preview](https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=1200&h=600&fit=crop)
+![Portfolio Preview](https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=1200&h=```bash
+# İlk kurulum için (önerilir)
+docker compose up --build -d
+
+# Normal kullanım için
+docker compose up -d
+
+# Kod değişikliklerinden sonra
+docker compose up --build -d
+```
+
+Bu komut ile:
+- Frontend (Vite+React), backend (Node.js+Express) ve MongoDB otomatik olarak başlatılır.
+- Tüm bağımlılıklar ve build işlemleri container içinde otomatik yapılır.
+- Ortam değişkenleri docker-compose.yml ve Dockerfile üzerinden otomatik ayarlanır.
+- `--build` parametresi imajları yeniden oluşturur (kod değişikliklerinden sonra gerekli)
+- `-d` parametresi arka planda çalıştırır
+
+### Docker Komutları
+
+```bash
+# Servisleri başlat
+docker compose up -d
+
+# Servisleri durdur
+docker compose down
+
+# Logları görüntüle
+docker compose logs
+
+# Belirli servisin logları
+docker compose logs backend
+```rop)
 
 ## 🚀 Features
 
@@ -87,12 +119,12 @@ Halil_s_Page/
    
    Create `.env` in the root directory:
    ```env
-   VITE_API_URL=http://localhost:5000/api
+   VITE_API_URL=http://localhost:3001/api
    ```
    
    Create `server/.env`:
    ```env
-   PORT=5000
+   PORT=3001
    NODE_ENV=development
    CLIENT_URL=http://localhost:5173
    MONGODB_URI=mongodb://localhost:27017/portfolio
@@ -172,13 +204,13 @@ The project includes pre-configured VS Code tasks for easy development:
 3. Type "Tasks: Run Task" and press Enter
 4. Choose from available tasks:
    - **"Start Frontend Dev Server"** - Runs frontend on port 5173
-   - **"Start Backend Dev Server"** - Runs backend on port 5000
+   - **"Start Backend Dev Server"** - Runs backend on port 3001
    - Or run both simultaneously using the background tasks
 - `Start Backend Dev Server` - Backend development server
 
 The application will be available at:
 - **Frontend**: http://localhost:5173
-- **Backend**: http://localhost:5000
+- **Backend**: http://localhost:3001
 
 ## 📝 API Endpoints
 
@@ -277,7 +309,7 @@ Bu komut ile:
 
 > **Not:** Aşağıdaki "Kurulum" ve "Geliştirme" başlıklarındaki adımlar, sadece Docker kullanmadan projeyi manuel başlatmak isteyenler içindir. Sadece yukarıdaki Docker komutunu kullanıyorsanız, bu adımları uygulamanıza gerek yoktur.
 
-> Kodda değişiklik yaptıktan sonra tekrar `docker compose build` komutunu çalıştırmanız önerilir.
+> **Önemli:** Kodda değişiklik yaptıktan sonra `docker compose up --build -d` komutunu kullanın.
 
 ## 🚀 Deployment
 

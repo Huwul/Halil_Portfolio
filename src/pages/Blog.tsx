@@ -109,12 +109,12 @@ export const Blog = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <section className="section-padding bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl sm:text-5xl font-bold text-white dark:text-white mb-6">
             My <span className="gradient-text">Blog</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-gray-300 dark:text-gray-300 max-w-3xl mx-auto mb-8">
             Thoughts, ideas, and insights about software development, technology, and the journey of building amazing web applications.
           </p>
 
@@ -127,7 +127,7 @@ export const Blog = () => {
                 placeholder="Search posts..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -164,7 +164,7 @@ export const Blog = () => {
       </section>
 
       {/* Blog Posts */}
-      <section className="section-padding">
+      <section className="section-padding bg-gray-900 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
           {filteredPosts.length === 0 ? (
             <div className="text-center py-16">

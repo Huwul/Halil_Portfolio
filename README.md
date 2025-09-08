@@ -74,9 +74,6 @@ Halil_s_Page/
    cd Halil_Portfolio
    ```
 
-2. **Install frontend dependencies**
-   ```bash
-   npm install
    ```
 
 3. **Install backend dependencies**
@@ -177,9 +174,6 @@ The project includes pre-configured VS Code tasks for easy development:
    - **"Start Frontend Dev Server"** - Runs frontend on port 5173
    - **"Start Backend Dev Server"** - Runs backend on port 5000
    - Or run both simultaneously using the background tasks
-
-**Available VS Code Tasks:**
-- `Start Frontend Dev Server` - Frontend development server
 - `Start Backend Dev Server` - Backend development server
 
 The application will be available at:

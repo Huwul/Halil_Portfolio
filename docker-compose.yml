@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  frontend:
+    build:
+      context: .
+      args:
+        VITE_API_URL: http://localhost:3001
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://localhost:3001
+    networks:
+      - appnet
+    restart: unless-stopped
+
+  backend:
+    build: ./server
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/portfolio
+    networks:
+      - appnet
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - appnet
+    restart: unless-stopped
+
+volumes:
+  mongo-data:
+
+networks:
+  appnet:
+    driver: bridge

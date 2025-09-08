@@ -71,4 +71,5 @@ Thumbs.db
 # Local development
 *.local
 
+# Environment variables
 .env

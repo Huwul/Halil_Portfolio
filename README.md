@@ -255,28 +255,29 @@ docker start portfolio-mongodb portfolio-mongo-express
 docker rm portfolio-mongodb portfolio-mongo-express
 docker logs portfolio-mongodb
 
-## 🐳 Docker ile Tek Satırda Tüm Sistemi Çalıştırma
+## 🐳 Docker ile Tek Komutla Tüm Sistemi Çalıştırma
 
-Projeyi başlatmak için kök dizinde aşağıdaki komutu çalıştırmanız yeterlidir:
+> **Kolay Başlangıç:** Sadece Docker kuruluysa, aşağıdaki tek komut ile frontend, backend ve MongoDB otomatik olarak başlar. Hiçbir manuel kurulum veya bağımlılık yükleme gerekmez!
 
 ```sh
 docker compose up --build
 ```
 
-Bu komut ile frontend (Vite+React), backend (Node.js+Express) ve MongoDB otomatik olarak başlatılır.
+Bu komut ile:
+- Frontend (Vite+React), backend (Node.js+Express) ve MongoDB otomatik olarak başlatılır.
+- Tüm bağımlılıklar ve build işlemleri container içinde otomatik yapılır.
+- Ortam değişkenleri docker-compose.yml ve Dockerfile üzerinden otomatik ayarlanır.
+- İlk başlatmada imajlar oluşturulur, sonraki başlatmalarda daha hızlı açılır.
 
 ### Servisler ve Erişim
+
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:3001
 - MongoDB: localhost:27017
 
-#### Açıklamalar
-- Frontend servisi Vite'ın preview modunda, backend ise production build ile başlatılır.
-- Ortam değişkenleri docker-compose.yml ve Dockerfile üzerinden otomatik ayarlanır.
-- Tüm bağımlılıklar ve build işlemleri container içinde otomatik yapılır.
-- İlk başlatmada imajlar oluşturulur, sonraki başlatmalarda daha hızlı açılır.
+> **Not:** Aşağıdaki "Kurulum" ve "Geliştirme" başlıklarındaki adımlar, sadece Docker kullanmadan projeyi manuel başlatmak isteyenler içindir. Sadece yukarıdaki Docker komutunu kullanıyorsanız, bu adımları uygulamanıza gerek yoktur.
 
-> Not: Kodda değişiklik yaptıktan sonra tekrar `docker compose build` komutunu çalıştırmanız önerilir.
+> Kodda değişiklik yaptıktan sonra tekrar `docker compose build` komutunu çalıştırmanız önerilir.
 
 ## 🚀 Deployment
 

@@ -125,7 +125,7 @@ export const Home = () => {
                         <div className="relative animate-fade-in">
                             <div className="w-80 h-80 mx-auto bg-gradient-to-br from-primary-400 to-purple-500 rounded-full shadow-2xl flex items-center justify-center">
                                 <img
-                                    src="/api/placeholder/300/300"
+                                    src="/profile.jpg"
                                     alt="Halil Yüksel"
                                     className="w-72 h-72 rounded-full object-cover border-4 border-white shadow-xl"
                                 />

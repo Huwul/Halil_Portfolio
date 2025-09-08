@@ -31,7 +31,7 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white border-t border-gray-200 mt-auto">
+    <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-auto">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand & Description */}
@@ -39,7 +39,7 @@ export const Footer = () => {
             <h3 className="text-2xl font-bold gradient-text mb-4">
               Halil Yüksel
             </h3>
-            <p className="text-gray-600 text-sm leading-relaxed max-w-xs">
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
               Software Engineer & Full Stack Developer passionate about building 
               performant, user-friendly, and scalable web applications.
             </p>
@@ -47,14 +47,14 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div className="col-span-1 md:col-span-1">
-            <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+            <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-4">
               Quick Links
             </h4>
             <ul className="space-y-2">
               <li>
                 <a
                   href="/"
-                  className="text-gray-600 hover:text-primary-600 text-sm transition-colors"
+                  className="text-gray-600 dark:text-gray-400 hover:text-primary-600 text-sm transition-colors"
                 >
                   About Me
                 </a>
@@ -62,7 +62,7 @@ export const Footer = () => {
               <li>
                 <a
                   href="/blog"
-                  className="text-gray-600 hover:text-primary-600 text-sm transition-colors"
+                  className="text-gray-600 dark:text-gray-400 hover:text-primary-600 text-sm transition-colors"
                 >
                   Blog Posts
                 </a>
@@ -70,7 +70,7 @@ export const Footer = () => {
               <li>
                 <a
                   href="/contact"
-                  className="text-gray-600 hover:text-primary-600 text-sm transition-colors"
+                  className="text-gray-600 dark:text-gray-400 hover:text-primary-600 text-sm transition-colors"
                 >
                   Get in Touch
                 </a>
@@ -80,7 +80,7 @@ export const Footer = () => {
 
           {/* Social Links */}
           <div className="col-span-1 md:col-span-1">
-            <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+            <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-4">
               Connect
             </h4>
             <div className="flex space-x-4">
@@ -92,7 +92,7 @@ export const Footer = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`text-gray-400 ${link.color} transition-colors p-2 rounded-lg hover:bg-gray-100`}
+                    className={`text-gray-400 dark:text-gray-500 ${link.color} transition-colors p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800`}
                     aria-label={link.name}
                   >
                     <Icon size={20} />
@@ -105,7 +105,7 @@ export const Footer = () => {
                 href="https://portfolio.halilyuksel.dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-sm text-gray-600 hover:text-primary-600 transition-colors"
+                className="inline-flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 transition-colors"
               >
                 <ExternalLink size={14} className="mr-1" />
                 portfolio.halilyuksel.dev
@@ -115,12 +115,12 @@ export const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="mt-8 pt-8 border-t border-gray-200">
+        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-500 dark:text-gray-400 text-sm">
               © {currentYear} Halil Yüksel. All rights reserved.
             </p>
-            <p className="text-gray-400 text-xs mt-2 md:mt-0">
+            <p className="text-gray-400 dark:text-gray-500 text-xs mt-2 md:mt-0">
               Built with React, TypeScript, Tailwind CSS & MongoDB
             </p>
           </div>

@@ -83,20 +83,20 @@ export const Home = () => {
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
-            <section className="section-padding bg-gradient-to-br from-blue-50 via-white to-purple-50">
+            <section className="section-padding bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div className="animate-fade-in-up">
-                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white dark:text-white mb-6">
                                 Hi, I'm{" "}
                                 <span className="gradient-text">
                                     Halil Yüksel
                                 </span>
                             </h1>
-                            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                            <p className="text-xl text-gray-300 dark:text-gray-300 mb-8 leading-relaxed">
                                 Software Engineer | Full Stack Developer
                             </p>
-                            <p className="text-lg text-gray-600 mb-8 max-w-2xl leading-relaxed">
+                            <p className="text-lg text-gray-300 dark:text-gray-300 mb-8 max-w-2xl leading-relaxed">
                                 I'm a software engineer and full stack web
                                 developer from Turkey with a passion for
                                 building performant, user-friendly, and scalable
@@ -136,23 +136,23 @@ export const Home = () => {
             </section>
 
             {/* About Section */}
-            <section className="section-padding">
+            <section className="section-padding bg-gray-900 dark:bg-gray-900">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-white dark:text-white mb-4">
                             About Me
                         </h2>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                        <p className="text-xl text-gray-300 dark:text-gray-300 max-w-3xl mx-auto">
                             My philosophy and approach to software development
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                            <h3 className="text-2xl font-bold text-white dark:text-white mb-6">
                                 My Philosophy
                             </h3>
-                            <p className="text-gray-600 mb-6 leading-relaxed">
+                            <p className="text-gray-300 dark:text-gray-300 mb-6 leading-relaxed">
                                 I believe that technology should always move
                                 forward—and so should developers. That's why I
                                 focus on modern tools and frameworks, not just
@@ -160,7 +160,7 @@ export const Home = () => {
                                 open the door to building smarter, faster, and
                                 more impactful solutions.
                             </p>
-                            <p className="text-gray-600 leading-relaxed">
+                            <p className="text-gray-300 dark:text-gray-300 leading-relaxed">
                                 For me, real growth comes from real projects. I
                                 like getting my hands dirty with challenges that
                                 exist outside of theory things that people
@@ -174,37 +174,37 @@ export const Home = () => {
                         <div className="grid grid-cols-2 gap-6">
                             <div className="card text-center">
                                 <Code className="w-12 h-12 text-primary-600 mx-auto mb-4" />
-                                <h4 className="font-semibold text-gray-900 mb-2">
+                                <h4 className="font-semibold text-white dark:text-white mb-2">
                                     Clean Code
                                 </h4>
-                                <p className="text-sm text-gray-600">
+                                <p className="text-sm text-gray-300 dark:text-gray-300">
                                     Writing maintainable and scalable code
                                 </p>
                             </div>
                             <div className="card text-center">
                                 <Palette className="w-12 h-12 text-primary-600 mx-auto mb-4" />
-                                <h4 className="font-semibold text-gray-900 mb-2">
+                                <h4 className="font-semibold text-white dark:text-white mb-2">
                                     UI/UX Focus
                                 </h4>
-                                <p className="text-sm text-gray-600">
+                                <p className="text-sm text-gray-300 dark:text-gray-300">
                                     Designing beautiful user experiences
                                 </p>
                             </div>
                             <div className="card text-center">
                                 <Globe className="w-12 h-12 text-primary-600 mx-auto mb-4" />
-                                <h4 className="font-semibold text-gray-900 mb-2">
+                                <h4 className="font-semibold text-white dark:text-white mb-2">
                                     Modern Web
                                 </h4>
-                                <p className="text-sm text-gray-600">
+                                <p className="text-sm text-gray-300 dark:text-gray-300">
                                     Using cutting-edge technologies
                                 </p>
                             </div>
                             <div className="card text-center">
                                 <Database className="w-12 h-12 text-primary-600 mx-auto mb-4" />
-                                <h4 className="font-semibold text-gray-900 mb-2">
+                                <h4 className="font-semibold text-white dark:text-white mb-2">
                                     Full Stack
                                 </h4>
-                                <p className="text-sm text-gray-600">
+                                <p className="text-sm text-gray-300 dark:text-gray-300">
                                     End-to-end application development
                                 </p>
                             </div>
@@ -214,13 +214,13 @@ export const Home = () => {
             </section>
 
             {/* Skills Section */}
-            <section className="section-padding bg-gray-50">
+            <section className="section-padding bg-gray-800 dark:bg-gray-800">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-white dark:text-white mb-4">
                             Skills & Technologies
                         </h2>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                        <p className="text-xl text-gray-300 dark:text-gray-300 max-w-3xl mx-auto">
                             Technologies I work with to bring ideas to life
                         </p>
                     </div>
@@ -236,10 +236,10 @@ export const Home = () => {
                                         {skill.icon}
                                     </span>
                                     <div>
-                                        <h3 className="font-semibold text-gray-900">
+                                        <h3 className="font-semibold text-white dark:text-white">
                                             {skill.name}
                                         </h3>
-                                        <p className="text-sm text-gray-600">
+                                        <p className="text-sm text-gray-300 dark:text-gray-300">
                                             {skill.category}
                                         </p>
                                     </div>
@@ -253,7 +253,7 @@ export const Home = () => {
                                         }}
                                     />
                                 </div>
-                                <p className="text-xs text-gray-500 mt-2 text-right">
+                                <p className="text-xs text-gray-400 dark:text-gray-400 mt-2 text-right">
                                     {skill.level}/10
                                 </p>
                             </div>
@@ -263,13 +263,13 @@ export const Home = () => {
             </section>
 
             {/* Experience Section */}
-            <section className="section-padding">
+            <section className="section-padding bg-gray-900 dark:bg-gray-900">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-white dark:text-white mb-4">
                             Experience
                         </h2>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                        <p className="text-xl text-gray-300 dark:text-gray-300 max-w-3xl mx-auto">
                             My professional journey and key experiences
                         </p>
                     </div>
@@ -277,7 +277,7 @@ export const Home = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {/* Experience */}
                         <div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                            <h3 className="text-2xl font-bold text-white dark:text-white mb-6 flex items-center">
                                 <div className="w-2 h-8 bg-primary-600 rounded-full mr-4"></div>
                                 Work Experience
                             </h3>
@@ -288,7 +288,7 @@ export const Home = () => {
                                         className="card"
                                     >
                                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                                            <h4 className="text-lg font-semibold text-gray-900">
+                                            <h4 className="text-lg font-semibold text-white dark:text-white">
                                                 {exp.title}
                                             </h4>
                                             <span className="text-sm text-primary-600 font-medium">
@@ -298,14 +298,14 @@ export const Home = () => {
                                         <p className="text-primary-600 font-medium mb-3">
                                             {exp.company}
                                         </p>
-                                        <p className="text-gray-600 mb-4">
+                                        <p className="text-gray-300 dark:text-gray-300 mb-4">
                                             {exp.description}
                                         </p>
                                         <div className="flex flex-wrap gap-2">
                                             {exp.technologies.map((tech) => (
                                                 <span
                                                     key={tech}
-                                                    className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
+                                                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-full"
                                                 >
                                                     {tech}
                                                 </span>
@@ -318,7 +318,7 @@ export const Home = () => {
 
                         {/* Education */}
                         <div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                            <h3 className="text-2xl font-bold text-white dark:text-white mb-6 flex items-center">
                                 <div className="w-2 h-8 bg-purple-600 rounded-full mr-4"></div>
                                 Education
                             </h3>
@@ -329,7 +329,7 @@ export const Home = () => {
                                         className="card"
                                     >
                                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                                            <h4 className="text-lg font-semibold text-gray-900">
+                                            <h4 className="text-lg font-semibold text-white dark:text-white">
                                                 {edu.degree}
                                             </h4>
                                             <span className="text-sm text-purple-600 font-medium">
@@ -339,7 +339,7 @@ export const Home = () => {
                                         <p className="text-purple-600 font-medium mb-3">
                                             {edu.school}
                                         </p>
-                                        <p className="text-gray-600">
+                                        <p className="text-gray-300 dark:text-gray-300">
                                             {edu.description}
                                         </p>
                                     </div>

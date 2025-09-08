@@ -98,27 +98,27 @@ export const Contact = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <section className="section-padding bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl sm:text-5xl font-bold text-white dark:text-white mb-6">
             Get In <span className="gradient-text">Touch</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 dark:text-gray-300 max-w-3xl mx-auto">
             I'd love to hear from you! Whether you have a project idea, want to collaborate, 
             or just want to say hello, feel free to reach out.
           </p>
         </div>
       </section>
 
-      <section className="section-padding">
+      <section className="section-padding bg-gray-900 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">
+              <h2 className="text-3xl font-bold text-white dark:text-white mb-8">
                 Let's Start a Conversation
               </h2>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+              <p className="text-gray-300 dark:text-gray-300 mb-8 leading-relaxed">
                 I'm always open to discussing new opportunities, interesting projects, 
                 or just having a chat about technology and software development. 
                 Don't hesitate to reach out!
@@ -129,13 +129,13 @@ export const Contact = () => {
                 {contactInfo.map((item) => {
                   const Icon = item.icon;
                   const content = (
-                    <div className="flex items-center p-4 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                      <div className={`p-3 rounded-full bg-gray-50 ${item.color} mr-4`}>
+                    <div className="flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
+                      <div className={`p-3 rounded-full bg-gray-50 dark:bg-gray-700 ${item.color} mr-4`}>
                         <Icon size={24} />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600 font-medium">{item.label}</p>
-                        <p className="text-gray-900 font-semibold">{item.value}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">{item.label}</p>
+                        <p className="text-gray-900 dark:text-white font-semibold">{item.value}</p>
                       </div>
                     </div>
                   );
@@ -154,7 +154,7 @@ export const Contact = () => {
 
               {/* Social Links */}
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-6">Follow Me</h3>
+                <h3 className="text-xl font-bold text-white dark:text-white mb-6">Follow Me</h3>
                 <div className="flex space-x-4">
                   {socialLinks.map((link) => {
                     const Icon = link.icon;
@@ -164,11 +164,11 @@ export const Contact = () => {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`group flex flex-col items-center p-4 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-all ${link.color}`}
+                        className={`group flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-all ${link.color}`}
                       >
                         <Icon size={32} className="mb-2" />
-                        <span className="text-sm font-medium text-gray-900">{link.name}</span>
-                        <span className="text-xs text-gray-500">{link.username}</span>
+                        <span className="text-sm font-medium text-gray-900 dark:text-white">{link.name}</span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">{link.username}</span>
                       </a>
                     );
                   })}
@@ -179,7 +179,7 @@ export const Contact = () => {
             {/* Contact Form */}
             <div>
               <div className="card">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Send me a message</h2>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send me a message</h2>
                 
                 {/* Success Message */}
                 {submitStatus === 'success' && (
@@ -206,7 +206,7 @@ export const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Full Name *
                       </label>
                       <input
@@ -216,12 +216,12 @@ export const Contact = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                         placeholder="John Doe"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Email Address *
                       </label>
                       <input
@@ -231,14 +231,14 @@ export const Contact = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                         placeholder="john@example.com"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Subject *
                     </label>
                     <input
@@ -248,13 +248,13 @@ export const Contact = () => {
                       value={formData.subject}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                       placeholder="Project collaboration, job opportunity, etc."
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Message *
                     </label>
                     <textarea
@@ -264,7 +264,7 @@ export const Contact = () => {
                       onChange={handleInputChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-vertical"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-vertical"
                       placeholder="Tell me about your project, idea, or just say hello!"
                     />
                   </div>
@@ -288,8 +288,8 @@ export const Contact = () => {
                   </button>
                 </form>
 
-                <div className="mt-6 pt-6 border-t border-gray-200">
-                  <p className="text-sm text-gray-500 text-center">
+                <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                  <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
                     I typically respond within 24-48 hours. For urgent matters, 
                     feel free to reach out on social media.
                   </p>

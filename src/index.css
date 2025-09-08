@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;  
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    outline: none;
+  }
+  .btn-primary:hover {
+    background-color: #1d4ed8;
+  }
+  .btn-primary:focus {
+    box-shadow: 0 0 0 2px #3b82f6, 0 0 0 4px rgba(59, 130, 246, 0.3);
+  }
+  
+  .btn-secondary {
+    background-color: #e5e7eb;
+    color: #111827;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    outline: none;
+  }
+  .btn-secondary:hover {
+    background-color: #d1d5db;
+  }
+  .btn-secondary:focus {
+    box-shadow: 0 0 0 2px #6b7280, 0 0 0 4px rgba(107, 114, 128, 0.3);
+  }
+  
+  .btn-outline {
+    border: 2px solid #2563eb;
+    color: #2563eb;
+    background-color: transparent;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    outline: none;
+  }
+  .btn-outline:hover {
+    background-color: #2563eb;
+    color: white;
+  }
+  .btn-outline:focus {
+    box-shadow: 0 0 0 2px #3b82f6, 0 0 0 4px rgba(59, 130, 246, 0.3);
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f3f4f6;
+    padding: 1.5rem;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(to right, #2563eb, #7c3aed);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .section-padding {
+    padding: 3rem 1rem;
+  }
+  @media (min-width: 640px) {
+    .section-padding {
+      padding: 4rem 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding: 5rem 2rem;
+    }
+  }
+}

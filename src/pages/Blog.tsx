@@ -93,8 +93,8 @@ export const Blog = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Oops! Something went wrong</h2>
-          <p className="text-gray-600 mb-8">{error}</p>
+          <h2 className="text-2xl font-bold text-white dark:text-white mb-4">Oops! Something went wrong</h2>
+          <p className="text-gray-300 dark:text-gray-300 mb-8">{error}</p>
           <button 
             onClick={() => window.location.reload()}
             className="btn-primary"
@@ -168,8 +168,8 @@ export const Blog = () => {
         <div className="max-w-7xl mx-auto">
           {filteredPosts.length === 0 ? (
             <div className="text-center py-16">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">No posts found</h3>
-              <p className="text-gray-600 mb-8">
+              <h3 className="text-2xl font-bold text-white dark:text-white mb-4">No posts found</h3>
+              <p className="text-gray-300 dark:text-gray-300 mb-8">
                 {(() => {
                   if (searchTerm) {
                     return `No posts match your search "${searchTerm}"`;
@@ -206,23 +206,23 @@ export const Blog = () => {
                     
                     <div className="flex-grow flex flex-col">
                       <div className="flex-grow">
-                        <div className="flex items-center text-sm text-gray-500 mb-3">
+                        <div className="flex items-center text-sm text-gray-100 dark:text-gray-100 mb-3">
                           <Calendar size={14} className="mr-1" />
                           <span className="mr-4">{formatDate(post.publishedAt)}</span>
                           <Clock size={14} className="mr-1" />
                           <span>{post.readTime} min read</span>
                         </div>
 
-                        <h2 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
+                        <h2 className="text-xl font-bold text-gray-100 dark:text-gray-100 mb-3 leading-tight">
                           <Link 
                             to={`/blog/${post.slug}`}
-                            className="hover:text-primary-600 transition-colors"
+                            className="hover:text-primary-300 transition-colors"
                           >
                             {post.title}
                           </Link>
                         </h2>
 
-                        <p className="text-gray-600 mb-4 line-clamp-3">
+                        <p className="text-gray-100 dark:text-gray-100 mb-4 line-clamp-3">
                           {post.excerpt}
                         </p>
                       </div>
@@ -234,14 +234,14 @@ export const Blog = () => {
                               <button
                                 key={tag}
                                 onClick={() => handleTagClick(tag)}
-                                className="inline-flex items-center px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full hover:bg-gray-200 transition-colors"
+                                className="inline-flex items-center px-3 py-1 bg-gray-600 text-white text-xs rounded-full hover:bg-gray-500 transition-colors border border-gray-500"
                               >
                                 <Tag size={10} className="mr-1" />
                                 {tag}
                               </button>
                             ))}
                             {post.tags.length > 3 && (
-                              <span className="text-xs text-gray-500 py-1">
+                              <span className="text-xs text-gray-400 py-1">
                                 +{post.tags.length - 3} more
                               </span>
                             )}
@@ -250,7 +250,7 @@ export const Blog = () => {
 
                         <Link
                           to={`/blog/${post.slug}`}
-                          className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium text-sm transition-colors"
+                          className="inline-flex items-center text-primary-300 hover:text-primary-200 font-medium text-sm transition-colors"
                         >
                           Read More
                           <ChevronRight size={16} className="ml-1" />
@@ -267,7 +267,7 @@ export const Blog = () => {
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className="flex items-center px-4 py-2 text-gray-600 hover:text-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    className="flex items-center px-4 py-2 text-gray-300 hover:text-primary-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     <ChevronLeft size={20} className="mr-1" />
                     Previous
@@ -293,7 +293,7 @@ export const Blog = () => {
                           className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                             currentPage === pageNum
                               ? 'bg-primary-600 text-white'
-                              : 'text-gray-600 hover:text-primary-600 hover:bg-gray-100'
+                              : 'text-gray-300 hover:text-primary-400 hover:bg-gray-800'
                           }`}
                         >
                           {pageNum}
@@ -305,7 +305,7 @@ export const Blog = () => {
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
-                    className="flex items-center px-4 py-2 text-gray-600 hover:text-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    className="flex items-center px-4 py-2 text-gray-300 hover:text-primary-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     Next
                     <ChevronRight size={20} className="ml-1" />

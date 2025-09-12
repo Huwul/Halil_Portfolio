@@ -1,4 +1,4 @@
-import { BookOpen, Home, Mail, Menu, X } from "lucide-react";
+import { BookOpen, Code2, Home, Mail, Menu, X } from "lucide-react";
 import { memo, useCallback, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import type { NavigationItem } from "../types";
@@ -72,10 +72,11 @@ export const Navigation = memo(() => {
                     <div className="flex-shrink-0 flex items-center">
                         <Link
                             to="/"
-                            className="text-2xl font-bold gradient-text"
+                            className="flex items-center space-x-2 text-2xl font-bold gradient-text"
                             aria-label="Go to homepage"
                         >
-                            HALİL YÜKSEL
+                            <Code2 size={28} className="text-primary-600" />
+                            <span>Halil Yüksel</span>
                         </Link>
                     </div>
 

@@ -73,22 +73,22 @@ router.post('/', [
         const ownerEmailOptions = {
           from: `"Portfolio Contact" <${process.env.SMTP_USER}>`,
           to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
-          subject: `Portfolio Contact: ${subject}`,
+          subject: `Portfolio Contact: ${subject.substring(0, 100)}`, // Limit subject length
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
               <h2 style="color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px;">
                 New Contact Message
               </h2>
               <div style="background: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Subject:</strong> ${subject}</p>
-                <p><strong>IP Address:</strong> ${ipAddress}</p>
+                <p><strong>Name:</strong> ${name.replace(/[<>&"]/g, '')}</p>
+                <p><strong>Email:</strong> ${email.replace(/[<>&"]/g, '')}</p>
+                <p><strong>Subject:</strong> ${subject.replace(/[<>&"]/g, '').substring(0, 100)}</p>
+                <p><strong>IP Address:</strong> ${ipAddress || 'Unknown'}</p>
                 <p><strong>Received:</strong> ${new Date().toLocaleString()}</p>
               </div>
               <div style="background: white; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
                 <h3 style="color: #555; margin-top: 0;">Message:</h3>
-                <p style="line-height: 1.6; color: #666;">${message}</p>
+                <p style="line-height: 1.6; color: #666;">${message.replace(/[<>&"]/g, '').substring(0, 1000)}</p>
               </div>
             </div>
           `
@@ -102,11 +102,11 @@ router.post('/', [
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
               <h2 style="color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px;">
-                Thank You, ${name}!
+                Thank You, ${name.replace(/[<>&"]/g, '')}!
               </h2>
               <div style="padding: 20px 0;">
                 <p style="line-height: 1.6; color: #666;">
-                  Thank you for reaching out! I've received your message about "<strong>${subject}</strong>" 
+                  Thank you for reaching out! I've received your message about "<strong>${subject.replace(/[<>&"]/g, '').substring(0, 50)}${subject.length > 50 ? '...' : ''}</strong>" 
                   and I'll get back to you as soon as possible.
                 </p>
                 <p style="line-height: 1.6; color: #666;">
@@ -158,11 +158,19 @@ router.post('/', [
   }
 });
 
-// GET /api/contact - Get all contact messages (for admin use)
+// GET /api/contact - Get all contact messages (ADMIN ONLY - PROTECTED ENDPOINT)
 router.get('/', async (req: Request, res: Response) => {
   try {
+    // SECURITY: Basic admin protection (should use proper auth in production)
+    const adminKey = req.headers['x-admin-key'] as string;
+    if (!adminKey || adminKey !== process.env.ADMIN_KEY) {
+      return res.status(401).json({ 
+        message: 'Unauthorized access denied. Admin authentication required.' 
+      });
+    }
+
     const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 10;
+    const limit = Math.min(parseInt(req.query.limit as string) || 10, 50); // Max 50 items
     const skip = (page - 1) * limit;
 
     const contacts = await Contact

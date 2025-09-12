@@ -29,6 +29,7 @@ services:
 
   mongo:
     image: mongo:7
+    # DEVELOPMENT: Port exposed for debugging
     ports:
       - "27017:27017"
     volumes:
@@ -36,6 +37,11 @@ services:
     networks:
       - appnet
     restart: unless-stopped
+    # DEVELOPMENT: No authentication for local development
+    # SECURITY: Add authentication in production
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER:-admin}
+    #   - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-changeme123}
 
 volumes:
   mongo-data:

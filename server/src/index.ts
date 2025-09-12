@@ -14,7 +14,10 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Security middleware
-app.use(helmet());
+app.use(helmet({
+  crossOriginEmbedderPolicy: false, // Allow embedding for development
+}));
+
 app.use(cors({
   origin: process.env.NODE_ENV === 'development' 
     ? ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:3000'] 
@@ -22,18 +25,31 @@ app.use(cors({
   credentials: true
 }));
 
-// Rate limiting - more permissive for development
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: process.env.NODE_ENV === 'production' ? 100 : 1000, // Higher limit for development
-  message: 'Too many requests from this IP, please try again later.',
-  skip: process.env.NODE_ENV === 'development' ? () => false : undefined // Less restrictive in development
-});
-app.use('/api', limiter);
+// Enhanced rate limiting
+const createRateLimiter = (windowMs: number, max: number, message: string) => 
+  rateLimit({
+    windowMs,
+    max: process.env.NODE_ENV === 'production' ? max : max * 10,
+    message,
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
 
-// Body parsing middleware
+// Different rate limits for different endpoints
+app.use('/api/contact', createRateLimiter(15 * 60 * 1000, 5, 'Too many contact requests'));
+app.use('/api', createRateLimiter(15 * 60 * 1000, 100, 'Too many requests from this IP'));
+
+// Body parsing middleware with size limits
 app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Request logging in development
+if (process.env.NODE_ENV === 'development') {
+  app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+    next();
+  });
+}
 
 // Database connection
 const connectDB = async () => {

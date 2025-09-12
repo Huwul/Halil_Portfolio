@@ -47,7 +47,46 @@ export interface SocialLink {
 
 export interface Skill {
   name: string;
-  category: 'frontend' | 'backend' | 'tools' | 'languages';
+  category: 'Frontend' | 'Backend' | 'Language' | 'Database' | 'Desktop' | 'Styling';
   level: number; // 1-10
-  icon?: string;
+  icon: string;
+}
+
+export interface Experience {
+  title: string;
+  company: string;
+  duration: string;
+  description: string;
+  technologies: string[];
+}
+
+export interface Education {
+  degree: string;
+  school: string;
+  duration: string;
+  description: string;
+}
+
+export interface NavigationItem {
+  name: string;
+  href: string;
+  icon: React.ComponentType<{ size?: number }>;
+}
+
+// API Error interface
+export interface ApiErrorResponse {
+  message: string;
+  errors?: Array<{
+    field: string;
+    message: string;
+  }>;
+}
+
+// Pagination interface
+export interface PaginationProps {
+  current: number;
+  total: number;
+  hasNext: boolean;
+  hasPrev: boolean;
+  onPageChange: (page: number) => void;
 }

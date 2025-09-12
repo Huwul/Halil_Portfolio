@@ -6,8 +6,10 @@ import {
     Globe,
     Database,
 } from "lucide-react";
+import { memo } from 'react';
+import type { Skill, Experience, Education } from '../types';
 
-const skills = [
+const skills: Skill[] = [
     {
         name: "Next.js",
         category: "Frontend",
@@ -58,7 +60,7 @@ const skills = [
     },
 ];
 
-const experiences = [
+const experiences: Experience[] = [
     {
         title: "Support Coordinator",
         company: "Ericsson",
@@ -69,7 +71,7 @@ const experiences = [
     },
 ];
 
-const education = [
+const education: Education[] = [
     {
         degree: "Computer Engineering",
         school: "Eastern Mediterranean University",
@@ -79,7 +81,92 @@ const education = [
     },
 ];
 
-export const Home = () => {
+// Memoized subcomponents for better performance
+const SkillCard = memo(({ skill, index }: { skill: Skill; index: number }) => (
+    <div className="card hover:shadow-xl transition-shadow duration-300">
+        <div className="flex items-center mb-4">
+            <span className="text-2xl mr-3" role="img" aria-label={skill.name}>
+                {skill.icon}
+            </span>
+            <div>
+                <h3 className="font-semibold text-white dark:text-white">
+                    {skill.name}
+                </h3>
+                <p className="text-sm text-gray-300 dark:text-gray-300">
+                    {skill.category}
+                </p>
+            </div>
+        </div>
+        <div className="w-full bg-gray-200 rounded-full h-2">
+            <div
+                className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full transition-all duration-1000 ease-out"
+                style={{
+                    width: `${skill.level * 10}%`,
+                    animationDelay: `${index * 100}ms`,
+                }}
+            />
+        </div>
+        <p className="text-xs text-gray-400 dark:text-gray-400 mt-2 text-right">
+            {skill.level}/10
+        </p>
+    </div>
+));
+
+SkillCard.displayName = 'SkillCard';
+
+const ExperienceCard = memo(({ experience }: { experience: Experience }) => (
+    <div className="card">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+            <h4 className="text-lg font-semibold text-white dark:text-white">
+                {experience.title}
+            </h4>
+            <span className="text-sm text-primary-600 font-medium">
+                {experience.duration}
+            </span>
+        </div>
+        <p className="text-primary-600 font-medium mb-3">
+            {experience.company}
+        </p>
+        <p className="text-gray-300 dark:text-gray-300 mb-4">
+            {experience.description}
+        </p>
+        <div className="flex flex-wrap gap-2">
+            {experience.technologies.map((tech) => (
+                <span
+                    key={tech}
+                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-full"
+                >
+                    {tech}
+                </span>
+            ))}
+        </div>
+    </div>
+));
+
+ExperienceCard.displayName = 'ExperienceCard';
+
+const EducationCard = memo(({ education }: { education: Education }) => (
+    <div className="card">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+            <h4 className="text-lg font-semibold text-white dark:text-white">
+                {education.degree}
+            </h4>
+            <span className="text-sm text-purple-600 font-medium">
+                {education.duration}
+            </span>
+        </div>
+        <p className="text-purple-600 font-medium mb-3">
+            {education.school}
+        </p>
+        <p className="text-gray-300 dark:text-gray-300">
+            {education.description}
+        </p>
+    </div>
+));
+
+EducationCard.displayName = 'EducationCard';
+
+export const Home = memo(() => {
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
@@ -227,36 +314,7 @@ export const Home = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {skills.map((skill, index) => (
-                            <div
-                                key={skill.name}
-                                className="card hover:shadow-xl transition-shadow duration-300"
-                            >
-                                <div className="flex items-center mb-4">
-                                    <span className="text-2xl mr-3">
-                                        {skill.icon}
-                                    </span>
-                                    <div>
-                                        <h3 className="font-semibold text-white dark:text-white">
-                                            {skill.name}
-                                        </h3>
-                                        <p className="text-sm text-gray-300 dark:text-gray-300">
-                                            {skill.category}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="w-full bg-gray-200 rounded-full h-2">
-                                    <div
-                                        className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full transition-all duration-1000 ease-out"
-                                        style={{
-                                            width: `${skill.level * 10}%`,
-                                            animationDelay: `${index * 100}ms`,
-                                        }}
-                                    />
-                                </div>
-                                <p className="text-xs text-gray-400 dark:text-gray-400 mt-2 text-right">
-                                    {skill.level}/10
-                                </p>
-                            </div>
+                            <SkillCard key={skill.name} skill={skill} index={index} />
                         ))}
                     </div>
                 </div>
@@ -283,35 +341,10 @@ export const Home = () => {
                             </h3>
                             <div className="space-y-6">
                                 {experiences.map((exp) => (
-                                    <div
-                                        key={`${exp.company}-${exp.title}`}
-                                        className="card"
-                                    >
-                                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                                            <h4 className="text-lg font-semibold text-white dark:text-white">
-                                                {exp.title}
-                                            </h4>
-                                            <span className="text-sm text-primary-600 font-medium">
-                                                {exp.duration}
-                                            </span>
-                                        </div>
-                                        <p className="text-primary-600 font-medium mb-3">
-                                            {exp.company}
-                                        </p>
-                                        <p className="text-gray-300 dark:text-gray-300 mb-4">
-                                            {exp.description}
-                                        </p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {exp.technologies.map((tech) => (
-                                                <span
-                                                    key={tech}
-                                                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-full"
-                                                >
-                                                    {tech}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
+                                    <ExperienceCard 
+                                        key={`${exp.company}-${exp.title}`} 
+                                        experience={exp} 
+                                    />
                                 ))}
                             </div>
                         </div>
@@ -324,25 +357,10 @@ export const Home = () => {
                             </h3>
                             <div className="space-y-6">
                                 {education.map((edu) => (
-                                    <div
-                                        key={`${edu.school}-${edu.degree}`}
-                                        className="card"
-                                    >
-                                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                                            <h4 className="text-lg font-semibold text-white dark:text-white">
-                                                {edu.degree}
-                                            </h4>
-                                            <span className="text-sm text-purple-600 font-medium">
-                                                {edu.duration}
-                                            </span>
-                                        </div>
-                                        <p className="text-purple-600 font-medium mb-3">
-                                            {edu.school}
-                                        </p>
-                                        <p className="text-gray-300 dark:text-gray-300">
-                                            {edu.description}
-                                        </p>
-                                    </div>
+                                    <EducationCard 
+                                        key={`${edu.school}-${edu.degree}`} 
+                                        education={edu} 
+                                    />
                                 ))}
                             </div>
                         </div>
@@ -380,4 +398,6 @@ export const Home = () => {
             </section>
         </div>
     );
-};
+});
+
+Home.displayName = 'Home';

@@ -97,4 +97,15 @@ BlogPostSchema.pre('save', function(this: IBlogPost, next) {
   next();
 });
 
+// Add indexes for better query performance
+BlogPostSchema.index({ slug: 1 }, { unique: true });
+BlogPostSchema.index({ publishedAt: -1 });
+BlogPostSchema.index({ isPublished: 1 });
+BlogPostSchema.index({ tags: 1 });
+BlogPostSchema.index({ author: 1 });
+
+// Compound indexes for common query patterns
+BlogPostSchema.index({ isPublished: 1, publishedAt: -1 });
+BlogPostSchema.index({ tags: 1, isPublished: 1, publishedAt: -1 });
+
 export default mongoose.model<IBlogPost>('BlogPost', BlogPostSchema);

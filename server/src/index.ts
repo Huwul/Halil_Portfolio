@@ -78,17 +78,22 @@ if (process.env.NODE_ENV === "development") {
 // Database connection
 const connectDB = async () => {
     try {
-        let mongoURI = process.env.MONGODB_URI || "mongodb://localhost:27017/portfolio";
-        
+        let mongoURI =
+            process.env.MONGODB_URI || "mongodb://localhost:27017/portfolio";
+
         // Add authentication if credentials are provided
         if (process.env.MONGO_USER && process.env.MONGO_PASSWORD) {
-            const protocol = mongoURI.includes('://') ? mongoURI.split('://')[0] : 'mongodb';
-            const hostAndPath = mongoURI.includes('://') ? mongoURI.split('://')[1] : mongoURI.replace('mongodb://', '');
+            const protocol = mongoURI.includes("://")
+                ? mongoURI.split("://")[0]
+                : "mongodb";
+            const hostAndPath = mongoURI.includes("://")
+                ? mongoURI.split("://")[1]
+                : mongoURI.replace("mongodb://", "");
             mongoURI = `${protocol}://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${hostAndPath}`;
         }
-        
+
         await mongoose.connect(mongoURI, {
-            authSource: 'admin' // Important for authentication
+            authSource: "admin", // Important for authentication
         });
         console.log("✅ MongoDB connected successfully");
     } catch (error) {

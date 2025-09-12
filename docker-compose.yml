@@ -1,51 +1,51 @@
 services:
-  frontend:
-    build:
-      context: .
-      args:
-        VITE_API_URL: http://localhost:3001/api
-    ports:
-      - "5173:5173"
-    depends_on:
-      - backend
-    environment:
-      - VITE_API_URL=http://localhost:3001/api
-    networks:
-      - appnet
-    restart: unless-stopped
+    frontend:
+        build:
+            context: .
+            args:
+                VITE_API_URL: http://localhost:3001/api
+        ports:
+            - "5173:5173"
+        depends_on:
+            - backend
+        environment:
+            - VITE_API_URL=http://localhost:3001/api
+        networks:
+            - appnet
+        restart: unless-stopped
 
-  backend:
-    build: ./server
-    ports:
-      - "3001:3001"
-    depends_on:
-      - mongo
-    environment:
-      - MONGODB_URI=mongodb://mongo:27017/portfolio
-      - PORT=3001
-    networks:
-      - appnet
-    restart: unless-stopped
+    backend:
+        build: ./server
+        ports:
+            - "3001:3001"
+        depends_on:
+            - mongo
+        environment:
+            - MONGODB_URI=mongodb://mongo:27017/portfolio
+            - PORT=3001
+        networks:
+            - appnet
+        restart: unless-stopped
 
-  mongo:
-    image: mongo:7
-    # DEVELOPMENT: Port exposed for debugging
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-    networks:
-      - appnet
-    restart: unless-stopped
-    # DEVELOPMENT: No authentication for local development
-    # SECURITY: Add authentication in production
-    # environment:
-    #   - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER:-admin}
-    #   - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-changeme123}
+    mongo:
+        image: mongo:7
+        # DEVELOPMENT: Port exposed for debugging
+        ports:
+            - "27017:27017"
+        volumes:
+            - mongo-data:/data/db
+        networks:
+            - appnet
+        restart: unless-stopped
+        # DEVELOPMENT: No authentication for local development
+        # SECURITY: Add authentication in production
+        # environment:
+        #   - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER:-admin}
+        #   - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-changeme123}
 
 volumes:
-  mongo-data:
+    mongo-data:
 
 networks:
-  appnet:
-    driver: bridge
+    appnet:
+        driver: bridge

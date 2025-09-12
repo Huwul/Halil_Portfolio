@@ -1,13 +1,13 @@
 import {
     ArrowRight,
-    ExternalLink,
     Code,
-    Palette,
-    Globe,
     Database,
+    ExternalLink,
+    Globe,
+    Palette,
 } from "lucide-react";
-import { memo } from 'react';
-import type { Skill, Experience, Education } from '../types';
+import { memo } from "react";
+import type { Education, Experience, Skill } from "../types";
 
 const skills: Skill[] = [
     {
@@ -112,7 +112,7 @@ const SkillCard = memo(({ skill, index }: { skill: Skill; index: number }) => (
     </div>
 ));
 
-SkillCard.displayName = 'SkillCard';
+SkillCard.displayName = "SkillCard";
 
 const ExperienceCard = memo(({ experience }: { experience: Experience }) => (
     <div className="card">
@@ -143,7 +143,7 @@ const ExperienceCard = memo(({ experience }: { experience: Experience }) => (
     </div>
 ));
 
-ExperienceCard.displayName = 'ExperienceCard';
+ExperienceCard.displayName = "ExperienceCard";
 
 const EducationCard = memo(({ education }: { education: Education }) => (
     <div className="card">
@@ -155,16 +155,14 @@ const EducationCard = memo(({ education }: { education: Education }) => (
                 {education.duration}
             </span>
         </div>
-        <p className="text-purple-600 font-medium mb-3">
-            {education.school}
-        </p>
+        <p className="text-purple-600 font-medium mb-3">{education.school}</p>
         <p className="text-gray-300 dark:text-gray-300">
             {education.description}
         </p>
     </div>
 ));
 
-EducationCard.displayName = 'EducationCard';
+EducationCard.displayName = "EducationCard";
 
 export const Home = memo(() => {
     return (
@@ -314,7 +312,11 @@ export const Home = memo(() => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {skills.map((skill, index) => (
-                            <SkillCard key={skill.name} skill={skill} index={index} />
+                            <SkillCard
+                                key={skill.name}
+                                skill={skill}
+                                index={index}
+                            />
                         ))}
                     </div>
                 </div>
@@ -341,9 +343,9 @@ export const Home = memo(() => {
                             </h3>
                             <div className="space-y-6">
                                 {experiences.map((exp) => (
-                                    <ExperienceCard 
-                                        key={`${exp.company}-${exp.title}`} 
-                                        experience={exp} 
+                                    <ExperienceCard
+                                        key={`${exp.company}-${exp.title}`}
+                                        experience={exp}
                                     />
                                 ))}
                             </div>
@@ -357,9 +359,9 @@ export const Home = memo(() => {
                             </h3>
                             <div className="space-y-6">
                                 {education.map((edu) => (
-                                    <EducationCard 
-                                        key={`${edu.school}-${edu.degree}`} 
-                                        education={edu} 
+                                    <EducationCard
+                                        key={`${edu.school}-${edu.degree}`}
+                                        education={edu}
                                     />
                                 ))}
                             </div>
@@ -400,4 +402,4 @@ export const Home = memo(() => {
     );
 });
 
-Home.displayName = 'Home';
+Home.displayName = "Home";

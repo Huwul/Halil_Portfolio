@@ -30,7 +30,13 @@ app.use(
                       "http://localhost:5175",
                       "http://localhost:3000",
                   ]
-                : process.env.CLIENT_URL || process.env.PRODUCTION_URL || "http://localhost:5173",
+                : [
+                      process.env.CLIENT_URL || "https://halil-portfolio-tau.vercel.app",
+                      process.env.PRODUCTION_URL || "https://halil-portfolio-tau.vercel.app",
+                      // Allow all Vercel preview deployments for this project
+                      /^https:\/\/halil-portfolio-.+\.vercel\.app$/,
+                      /^https:\/\/halil-portfolio-d5m3eomun-halils-projects-6159e267\.vercel\.app$/
+                  ],
         credentials: true,
     })
 );

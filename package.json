@@ -5,7 +5,7 @@
     "type": "module",
     "description": "Modern full-stack portfolio website built with React, TypeScript, and Node.js",
     "author": "Halil Yüksel <contact@halilyuksel.dev>",
-    "homepage": "https://https://halil-portfolio-tau.vercel.app/",
+    "homepage": "https://halil-portfolio-tau.vercel.app/",
     "repository": {
         "type": "git",
         "url": "https://github.com/halilyuksel/portfolio.git"

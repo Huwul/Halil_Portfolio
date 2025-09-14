@@ -522,7 +522,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Halil Yüksel**
 
--   Website: [https://halil-portfolio-tau.vercel.app/](https://https://halil-portfolio-tau.vercel.app/)
+-   Website: [https://halil-portfolio-tau.vercel.app/](https://halil-portfolio-tau.vercel.app/)
 -   Email: [contact@halilyuksel.dev](mailto:contact@halilyuksel.dev)
 -   GitHub: [@halilyuksel](https://github.com/halilyuksel)
 -   LinkedIn: [Halil Yüksel](https://linkedin.com/in/halilyuksel)

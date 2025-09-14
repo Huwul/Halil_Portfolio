@@ -100,7 +100,7 @@ export const Footer = () => {
                         </div>
                         <div className="mt-4">
                             <a
-                                href="https://https://halil-portfolio-tau.vercel.app/"
+                                href="https://halil-portfolio-tau.vercel.app/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 transition-colors"

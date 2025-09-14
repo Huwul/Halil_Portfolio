@@ -100,13 +100,13 @@ export const Footer = () => {
                         </div>
                         <div className="mt-4">
                             <a
-                                href="https://portfolio.halilyuksel.dev"
+                                href="https://https://halil-portfolio-tau.vercel.app/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 transition-colors"
                             >
                                 <ExternalLink size={14} className="mr-1" />
-                                portfolio.halilyuksel.dev
+                                https://halil-portfolio-tau.vercel.app/
                             </a>
                         </div>
                     </div>
